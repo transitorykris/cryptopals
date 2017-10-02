@@ -69,3 +69,24 @@ func TestXOR(t *testing.T) {
 		t.Errorf("Unexpectedly got a result: %s", res)
 	}
 }
+
+func TestCrackSingleByteXOR(t *testing.T) {
+	cipherText := "1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736"
+	text := "Cooking MC's like a pound of bacon"
+
+	res, err := CrackSingleByteXOR(cipherText)
+	if err != nil {
+		t.Errorf("Unexpectedly got an error: %s", err.Error())
+	}
+	if res != text {
+		t.Errorf("Failed to find original text: %s, got: %s", text, res)
+	}
+
+	res, err = CrackSingleByteXOR("This is not hex")
+	if err == nil {
+		t.Errorf("An invalid string did not generate an error")
+	}
+	if res != "" {
+		t.Errorf("Unexpectedly got a result: %s", res)
+	}
+}
