@@ -1,6 +1,8 @@
 package challenge1
 
-import "testing"
+import (
+	"testing"
+)
 
 func TestHexToBase64(t *testing.T) {
 	hex := "49276d206b696c6c696e6720796f757220627261696e206c696b65206120706f69736f6e6f7573206d757368726f6f6d"
@@ -88,5 +90,25 @@ func TestCrackSingleByteXOR(t *testing.T) {
 	}
 	if res != "" {
 		t.Errorf("Unexpectedly got a result: %s", res)
+	}
+}
+
+func TestScanFile(t *testing.T) {
+	text := "Now that the party is jumping\n"
+
+	res, err := scanFile("4.txt")
+	if err != nil {
+		t.Errorf("Unexpectedly got an error: %s", err.Error())
+	}
+	if res != text {
+		t.Errorf("Did not get correct text, expected: %s, got: %s", text, res)
+	}
+
+	res, err = scanFile("doesnotexist.txt")
+	if err == nil {
+		t.Errorf("Expected an error, got: %s", err.Error())
+	}
+	if res != "" {
+		t.Errorf("Should have gotten empty result, got: %s", res)
 	}
 }

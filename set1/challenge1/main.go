@@ -1,9 +1,11 @@
 package challenge1
 
 import (
+	"bufio"
 	"encoding/base64"
 	"encoding/hex"
 	"fmt"
+	"os"
 	"strings"
 )
 
@@ -80,4 +82,29 @@ func scoreText(text string) int {
 		}
 	}
 	return score
+}
+
+// scanFile checks each of the strings in 4.txt and determines which one
+// has been XOR'd by a single character
+func scanFile(filename string) (string, error) {
+	f, err := os.Open(filename)
+	if err != nil {
+		return "", err
+	}
+	highScore := 0
+	highMatch := ""
+	scanner := bufio.NewScanner(f)
+	for scanner.Scan() {
+		cipherText := scanner.Text()
+		possibleDecryptedText, err := CrackSingleByteXOR(cipherText)
+		if err != nil {
+			return "", err
+		}
+		score := scoreText(possibleDecryptedText)
+		if score > highScore {
+			highScore = score
+			highMatch = possibleDecryptedText
+		}
+	}
+	return highMatch, nil
 }
