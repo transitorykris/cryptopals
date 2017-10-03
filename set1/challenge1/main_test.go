@@ -112,3 +112,24 @@ func TestScanFile(t *testing.T) {
 		t.Errorf("Should have gotten empty result, got: %s", res)
 	}
 }
+
+func TestRepeatingXOR(t *testing.T) {
+	key := "ICE"
+	text := "Burning 'em, if you ain't quick and nimble\nI go crazy when I hear a cymbal"
+	cipherText := "0b3637272a2b2e63622c2e69692a23693a2a3c6324202d623d63343c2a26226324272765272a282b2f20430a652e2c652a3124333a653e2b2027630c692b20283165286326302e27282f"
+
+	res := RepeatingXOR(key, text)
+	if res != cipherText {
+		t.Errorf("Incorrect encryption, got: %s, expected: %s", res, cipherText)
+	}
+
+	res = RepeatingXOR("WrongKey", text)
+	if res == cipherText {
+		t.Errorf("Incorrect encryption, did not expect expected: %s", res)
+	}
+
+	res = RepeatingXOR(key, "This is not the text we want to encrypt")
+	if res == cipherText {
+		t.Errorf("Incorrect encryption, did not expect expected: %s", res)
+	}
+}

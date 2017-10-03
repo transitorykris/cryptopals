@@ -108,3 +108,12 @@ func scanFile(filename string) (string, error) {
 	}
 	return highMatch, nil
 }
+
+// RepeatingXOR repeatedly XORs key against text by cycling through the bytes in key
+func RepeatingXOR(key string, text string) string {
+	var cipherText []byte
+	for i := 0; i < len(text); i++ {
+		cipherText = append(cipherText, byte(text[i]^key[i%3]))
+	}
+	return hex.EncodeToString(cipherText)
+}
