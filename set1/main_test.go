@@ -143,4 +143,9 @@ func TestHammingDistance(t *testing.T) {
 	if distance != d {
 		t.Errorf("Incorrect hamming distance, got: %d, expected: %d", distance, d)
 	}
+
+	distance = HammingDistance(a, "This is not wokka wokka")
+	if distance == d {
+		t.Errorf("Incorrect hamming distance, did not expect: %d", d)
+	}
 }
