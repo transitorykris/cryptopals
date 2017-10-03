@@ -1,4 +1,4 @@
-package challenge1
+package set1
 
 import (
 	"testing"
