@@ -125,11 +125,11 @@ func TestRepeatingXOR(t *testing.T) {
 
 	res = RepeatingXOR("WrongKey", text)
 	if res == cipherText {
-		t.Errorf("Incorrect encryption, did not expect expected: %s", res)
+		t.Errorf("Incorrect encryption, did not expect: %s", res)
 	}
 
 	res = RepeatingXOR(key, "This is not the text we want to encrypt")
 	if res == cipherText {
-		t.Errorf("Incorrect encryption, did not expect expected: %s", res)
+		t.Errorf("Incorrect encryption, did not expect: %s", res)
 	}
 }
