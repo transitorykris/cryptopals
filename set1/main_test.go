@@ -133,3 +133,14 @@ func TestRepeatingXOR(t *testing.T) {
 		t.Errorf("Incorrect encryption, did not expect: %s", res)
 	}
 }
+
+func TestHammingDistance(t *testing.T) {
+	a := "this is a test"
+	b := "wokka wokka!!!"
+	d := 37
+
+	distance := HammingDistance(a, b)
+	if distance != d {
+		t.Errorf("Incorrect hamming distance, got: %d, expected: %d", distance, d)
+	}
+}

@@ -2,9 +2,11 @@ package set1
 
 import (
 	"bufio"
+	"bytes"
 	"encoding/base64"
 	"encoding/hex"
 	"fmt"
+	"math/bits"
 	"os"
 	"strings"
 )
@@ -120,4 +122,26 @@ func RepeatingXOR(key string, text string) string {
 		cipherText = append(cipherText, byte(text[i]^key[i%3]))
 	}
 	return hex.EncodeToString(cipherText)
+}
+
+// HammingDistance compute the number of differing bits in two strings
+// http://cryptopals.com/sets/1/challenges/6
+func HammingDistance(a, b string) int {
+	aBytes := []byte(a)
+	bBytes := []byte(b)
+	distance := 0
+
+	// Make sure our strings are the same length
+	aLen := len(aBytes)
+	bLen := len(bBytes)
+	if aLen > bLen {
+		bBytes = append(bBytes, bytes.Repeat([]byte{0x00}, aLen-bLen)...)
+	} else if bLen > aLen {
+		aBytes = append(aBytes, bytes.Repeat([]byte{0x00}, bLen-aLen)...)
+	}
+
+	for i := range aBytes {
+		distance += bits.OnesCount8(uint8(aBytes[i] ^ bBytes[i]))
+	}
+	return distance
 }
