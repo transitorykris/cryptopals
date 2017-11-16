@@ -4,6 +4,8 @@ import (
 	"testing"
 )
 
+// TestHexToBase64 tests that Set 1 Exercise 1 is complete
+// http://cryptopals.com/sets/1/challenges/1
 func TestHexToBase64(t *testing.T) {
 	hex := "49276d206b696c6c696e6720796f757220627261696e206c696b65206120706f69736f6e6f7573206d757368726f6f6d"
 	b64 := "SSdtIGtpbGxpbmcgeW91ciBicmFpbiBsaWtlIGEgcG9pc29ub3VzIG11c2hyb29t"
@@ -30,10 +32,12 @@ func TestHexToBase64(t *testing.T) {
 		t.Errorf("An invalid string did not generate an error")
 	}
 	if res != "" {
-		t.Errorf("Unexpectedly got a result: %s", res)
+
 	}
 }
 
+// TestXOR tests that Set 1 Exercise 2 is complete
+// http://cryptopals.com/sets/1/challenges/2
 func TestXOR(t *testing.T) {
 	a := "1c0111001f010100061a024b53535009181c"
 	b := "686974207468652062756c6c277320657965"
@@ -72,6 +76,8 @@ func TestXOR(t *testing.T) {
 	}
 }
 
+// TestCrackSingleByteXOR tests that Set 1 Exercise 3 is complete
+// http://cryptopals.com/sets/1/challenges/3
 func TestCrackSingleByteXOR(t *testing.T) {
 	cipherText := "1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736"
 	text := "Cooking MC's like a pound of bacon"
@@ -93,10 +99,12 @@ func TestCrackSingleByteXOR(t *testing.T) {
 	}
 }
 
+// TestScanFile tests that Set 1 Exercise 4 is complete
+// http://cryptopals.com/sets/1/challenges/4
 func TestScanFile(t *testing.T) {
 	text := "Now that the party is jumping\n"
 
-	res, err := scanFile("4.txt")
+	res, err := scanFile("set1/4.txt")
 	if err != nil {
 		t.Errorf("Unexpectedly got an error: %s", err.Error())
 	}
@@ -113,6 +121,8 @@ func TestScanFile(t *testing.T) {
 	}
 }
 
+// TestRepeatingXOR tests that Set 1 Exercise 5 is complete
+// http://cryptopals.com/sets/1/challenges/5
 func TestRepeatingXOR(t *testing.T) {
 	key := "ICE"
 	text := "Burning 'em, if you ain't quick and nimble\nI go crazy when I hear a cymbal"

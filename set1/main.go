@@ -12,7 +12,6 @@ import (
 )
 
 // HexToBase64 converts a string given in hex to a base64 encoded string
-// http://cryptopals.com/sets/1/challenges/1
 func HexToBase64(in string) (string, error) {
 	// Convert our string into a slice of hexadecimal bytes
 	b, err := hex.DecodeString(in)
@@ -24,7 +23,6 @@ func HexToBase64(in string) (string, error) {
 }
 
 // XOR computes the XOR of two equal length hex strings
-// http://cryptopals.com/sets/1/challenges/2
 func XOR(a, b string) (string, error) {
 	aBytes, err := hex.DecodeString(a)
 	if err != nil {
@@ -48,7 +46,6 @@ func XOR(a, b string) (string, error) {
 }
 
 // CrackSingleByteXOR attempts to crack a single byte XOR cipher text
-// http://cryptopals.com/sets/1/challenges/3
 func CrackSingleByteXOR(cipherText string) (string, error) {
 	var key byte
 	key = 0
@@ -75,7 +72,6 @@ func CrackSingleByteXOR(cipherText string) (string, error) {
 
 // scoreText will return a score based on the frequency of the characters
 // ETAOINSHRDLU occuring in the given string
-// http://cryptopals.com/sets/1/challenges/3
 func scoreText(text string) int {
 	text = strings.ToLower(text)
 	etaoin := "etaoinshrdlu "
@@ -90,7 +86,6 @@ func scoreText(text string) int {
 
 // scanFile checks each of the strings in 4.txt and determines which one
 // has been XOR'd by a single character
-// http://cryptopals.com/sets/1/challenges/4
 func scanFile(filename string) (string, error) {
 	f, err := os.Open(filename)
 	if err != nil {
@@ -115,7 +110,6 @@ func scanFile(filename string) (string, error) {
 }
 
 // RepeatingXOR repeatedly XORs key against text by cycling through the bytes in key
-// http://cryptopals.com/sets/1/challenges/5
 func RepeatingXOR(key string, text string) string {
 	var cipherText []byte
 	for i := 0; i < len(text); i++ {
@@ -125,7 +119,6 @@ func RepeatingXOR(key string, text string) string {
 }
 
 // HammingDistance compute the number of differing bits in two strings
-// http://cryptopals.com/sets/1/challenges/6
 func HammingDistance(a, b string) int {
 	aBytes := []byte(a)
 	bBytes := []byte(b)
