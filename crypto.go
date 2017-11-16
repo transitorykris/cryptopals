@@ -84,7 +84,7 @@ func scoreText(text string) int {
 	return score
 }
 
-// scanFile checks each of the strings in 4.txt and determines which one
+// scanFile checks each of the strings in a file and determines which one
 // has been XOR'd by a single character
 func scanFile(filename string) (string, error) {
 	f, err := os.Open(filename)
